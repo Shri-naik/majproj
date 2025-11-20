@@ -2,6 +2,7 @@ services:
   - type: web
     name: eco-pollution-predictor
     runtime: python3
+    pythonVersion: "3.11"
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
