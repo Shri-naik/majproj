@@ -101,16 +101,22 @@ def predict():
         image = Image.open(filepath).convert("RGB")
 
         # Load model
-        model = load_model(MODEL_PATHS[pollution_type])
-        if not model:
-            return "Model not found", 500
+        try:
+            model = load_model(MODEL_PATHS[pollution_type])
+            if not model:
+                return "Model not found", 500
+        except Exception as e:
+            return f"Error loading model: {str(e)}", 500
 
         # Predict
-        img_array = preprocess_image(image)
-        pred = model.predict(img_array)
-        confidence = np.max(pred)
-        label_index = np.argmax(pred)
-        prediction = CLASS_NAMES[label_index]
+        try:
+            img_array = preprocess_image(image)
+            pred = model.predict(img_array)
+            confidence = np.max(pred)
+            label_index = np.argmax(pred)
+            prediction = CLASS_NAMES[label_index]
+        except Exception as e:
+            return f"Error during prediction: {str(e)}", 500
 
         # All class probabilities (for frontend display)
         probs = {CLASS_NAMES[i]: float(pred[0][i] * 100) for i in range(len(CLASS_NAMES))}
