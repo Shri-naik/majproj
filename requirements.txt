@@ -9,7 +9,7 @@ albumentations
 tqdm
 
 # Deep Learning
-tensorflow==2.8.0  # specific version for model compatibility
+tensorflow==2.8.0
 
 # Web framework (Flask UI)
 Flask>=2.0
