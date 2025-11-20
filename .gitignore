@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+.env/
+
+# Node / React
+node_modules/
+
+# ML / DL large files
+*.h5
+*.hdf5
+*.ckpt
+*.pb
+*.npz
+*.pt
+*.pth
+*.onnx
+/checkpoints/
+/runs/
+/logs/
+
+# Images / datasets
+dataset/
+datasets/
+images/
+data/
+
+# Others
+*.zip
+*.rar
+*.exe
+*.mp4
+*.mp3
+*.avi
+.DS_Store
