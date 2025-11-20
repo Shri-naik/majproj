@@ -18,7 +18,7 @@ temp_img/
 experiments/
 
 # ML / DL models
-*.h5
+# *.h5  # Uncomment if you want to ignore model files
 *.hdf5
 *.ckpt
 *.pb
