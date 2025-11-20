@@ -1,37 +1,44 @@
-# Python
-__pycache__/
-*.pyc
-.env
+# Virtual environments
 venv/
+venv_tf/
+.env/
 .env/
 
-# Node / React
-node_modules/
+# Python cache
+__pycache__/
+*.pyc
 
-# ML / DL large files
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Data folders (usually large)
+data/
+data_processed/
+temp_img/
+experiments/
+
+# ML / DL models
 *.h5
 *.hdf5
 *.ckpt
 *.pb
-*.npz
 *.pt
 *.pth
 *.onnx
-/checkpoints/
-/runs/
-/logs/
 
-# Images / datasets
-dataset/
-datasets/
-images/
-data/
+# TensorFlow / OpenCV large binaries
+*.pyd
+*.dll
+*.so
 
-# Others
-*.zip
-*.rar
-*.exe
-*.mp4
-*.mp3
-*.avi
+# Logs and temp files
+logs/
+runs/
+checkpoints/
+*.log
+
+# OS-specific
 .DS_Store
+
+# Flask uploads or temp
+static/uploads/
