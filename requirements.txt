@@ -1,21 +1,5 @@
-# Core ML stack
-numpy
-pandas
-scikit-learn
-opencv-python
-matplotlib
-seaborn
-albumentations
-tqdm
-
-# Deep Learning
-tensorflow==2.13.0
-
-# Web framework (Flask UI)
-Flask>=2.0
-
-# Optional but useful
-Pillow
-
-# For deployment
-gunicorn
+Flask==3.0.3
+tensorflow-cpu==2.12.0
+numpy==1.23.5
+Pillow==10.2.0
+gunicorn==21.2.0
