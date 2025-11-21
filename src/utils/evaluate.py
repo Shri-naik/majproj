@@ -8,6 +8,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from utils.data_loader import get_datasets
 
+# Custom layer to fix loading issue
+class CustomDepthwiseConv2D(tf.keras.layers.DepthwiseConv2D):
+    def __init__(self, groups=1, **kwargs):
+        # Ignore 'groups' parameter as it's not recognized in this TF version
+        kwargs.pop('groups', None)
+        super().__init__(**kwargs)
+
 
 def evaluate_model(model_path: str, data_dir: str, img_size=(224, 224), batch_size=32):
     """
@@ -19,7 +26,7 @@ def evaluate_model(model_path: str, data_dir: str, img_size=(224, 224), batch_si
     # Load model
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"❌ Model not found at {model_path}")
-    model = tf.keras.models.load_model(model_path)
+    model = tf.keras.models.load_model(model_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D})
 
     # Get predictions
     y_true, y_pred = [], []
@@ -54,7 +61,7 @@ def predict_image(model_path: str, image_path: str, img_size=(224, 224)):
     if not os.path.exists(image_path):
         raise FileNotFoundError(f"❌ Image not found at {image_path}")
 
-    model = tf.keras.models.load_model(model_path)
+    model = tf.keras.models.load_model(model_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D})
 
     # Load and preprocess image
     img = tf.keras.utils.load_img(image_path, target_size=img_size)

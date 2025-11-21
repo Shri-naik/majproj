@@ -19,12 +19,21 @@ MODEL_PATHS = {
 CLASS_NAMES = ["Clean", "Little Polluted", "Highly Polluted"]
 
 # ---------------------------
+# Custom layer to fix loading issue
+# ---------------------------
+class CustomDepthwiseConv2D(tf.keras.layers.DepthwiseConv2D):
+    def __init__(self, groups=1, **kwargs):
+        # Ignore 'groups' parameter as it's not recognized in this TF version
+        kwargs.pop('groups', None)
+        super().__init__(**kwargs)
+
+# ---------------------------
 # Helper functions
 # ---------------------------
 def load_model(model_path):
     if not os.path.exists(model_path):
         return None
-    return tf.keras.models.load_model(model_path)
+    return tf.keras.models.load_model(model_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D})
 
 def preprocess_image(image, img_size=(224, 224)):
     img = image.resize(img_size)
